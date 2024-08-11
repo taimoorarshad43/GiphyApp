@@ -1,11 +1,13 @@
 const baseURL = "http://api.giphy.com/v1/gifs/search"
 const api_key = "UI3joM0OgATdJyYTqazQVGb3N0eF6fZo"
-const rating = "g&pg"
+const rating = "pg"
 
 async function getGifs(q){
-    const res = await axios.get(baseURL, {params : {api_key, q}})
-    console.log(res);
-    return res.data.data[0].images.original.url;
+    const res = await axios.get(baseURL, {params : {api_key, q, rating}})
+    // console.log(res);
+    let random = Math.floor(Math.random() * res.data.data.length);
+    // console.log(random);
+    return res.data.data[random].images.original.url;
 }
 
 const btn = document.querySelector("#submit");
